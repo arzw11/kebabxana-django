@@ -1,0 +1,109 @@
+body {
+    background-color: black;
+}
+
+.navbar-brand img {
+    width: 100px;
+}
+.navbar-toggler {
+    background-color: bisque;
+}
+.navbar-nav a{
+    margin: 20px;
+    color: aliceblue;
+    font-size: 25px;
+    text-decoration: none;
+    transition: all .07s ease-in-out; 
+}
+.navbar-nav a:hover {
+    color: brown;
+}
+.right-side{
+    justify-content: end;
+}
+.rightSide {
+    list-style: none;
+}
+.rightSide a {
+    text-decoration: none;
+    color: black;
+    font-size: 25px;
+    transition: all .07s ease-in-out; 
+}
+.rightSide button {
+    background: aliceblue;
+    text-decoration: none;
+    border-style: none;
+    border-radius: 7px;
+    transition: all .07s ease-in-out; 
+}
+.rightSide button:hover{
+    background: brown;
+}
+.sideBar {
+	display: flex;
+	flex-direction: column;
+}
+.side-bar-menu {
+    color: aliceblue;
+}
+.side-bar-text {
+    color: aliceblue;
+    text-decoration: none;
+    font-size: 22px;
+    transition: all .07s ease-in-out;
+}
+.side-bar-text:hover {
+    color: brown;
+    border-radius: 8px;
+}
+
+.category {
+    color: brown;
+}
+.card {
+    background-color: black;
+}
+.card img {
+    height: 200px;
+}
+.card-title {
+    color: aliceblue;
+}
+
+.card-price {
+    color: aliceblue;
+}
+.add-cart {
+	color: #000;
+	background: aliceblue;
+	border-radius: 8px;
+	border: none;
+	align-items: center;
+	justify-content: center;
+	transition: all .07s ease-in-out;
+}
+.add-cart:hover{
+	background-color: brown;
+	border-radius: 8px;
+	color: aliceblue;
+}
+.quantity {
+    display: none;
+    margin-left: 10px;
+}
+  
+.quantity button {
+    border-radius: 8px;
+    
+}
+  
+.count {
+    margin: 0 5px;
+}
+
+@media (max-width: 1000px) {
+	.drop{
+		display: none;
+	}
+}

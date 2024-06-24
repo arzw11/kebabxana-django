@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load kebab_tags %}
+
+{% block content %}
+<section>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-2 col-md-12">
+                <div class="row">
+                    <div class="sideBar drop">
+                        <div class="col-lg-12 side-bar my-2 mx-4">
+                            <h2 class="side-bar-menu">Меню</h3>
+                        </div>
+                        {% for cat in cats %}
+                        <div class="col-lg-12 side-bar my-2 mx-4">
+                            <a class="side-bar-text" href="#{{ cat.slug }}">{{ cat.name }}</a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    {% for cat in cats %}
+                    <div class="category my-2">
+                        <h3 id="{{ cat.slug }}">{{ cat.name }}</h3>
+                    </div>
+                    {% get_products as products %}
+                    {% for pr in products %}
+                    {% if cat.id == pr.categories_id %}
+                    <div class="col-lg-3 col-md-4 mt-4 mr-2">
+                        <div class="card">
+                            <img src="{{ pr.product_images.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pr.product_name }}</h5>
+                                <p class="card-price">{{ pr.product_price }} <small>₽</small></p>
+                                <button class="add-cart">Добавить</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>            
+</section>
+
+
+{% endblock  %}
