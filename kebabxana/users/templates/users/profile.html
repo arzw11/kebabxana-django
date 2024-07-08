@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Профиль</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="form-error">{{ form.non_field_errors }}</div>
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+
+    <p><button type="submit">Сохранить</button></p>
+</form>
+
+<hr>
+{% if not perms.users.social_auth %}
+<form action="{% url 'users:password_change' %}" method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Сменить пароль</button>
+</form>
+{% endif %}
+
+<form action="{% url 'users:logout' %}" method="post">
+    {% csrf_token %}
+     <button type="submit" class="btn btn-success">выйти</button>
+ </form>
+{% endblock %}

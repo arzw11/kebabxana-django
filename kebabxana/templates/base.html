@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg sticky-top">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><img src="{% static "kebab/images/logo_kebab.png" %}" alt=""></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -29,8 +29,11 @@
                 </div>
                 <div class="collapse navbar-collapse right-side" id="navbarNav">
                     <ul class="rightSide">
-                        <li><button><a href="#">Войти</a></button></li>
-                        </li>
+                        {% if user.is_authenticated %}
+                        <li><button><a href="{% url 'users:profile' %}">{{user.username}}</a></button></li>
+                        {% else %}
+                        <li><button><a href="{% url "users:login" %}">Войти</a></button></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

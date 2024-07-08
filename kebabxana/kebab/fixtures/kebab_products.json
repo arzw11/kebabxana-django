@@ -1,0 +1,167 @@
+[
+{
+  "model": "kebab.products",
+  "pk": 1,
+  "fields": {
+    "product_name": "Шашлык из свинины",
+    "product_price": 300,
+    "product_images": "kebab/images/shahlyk_svinina.jpg",
+    "categories": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 2,
+  "fields": {
+    "product_name": "Шашлык из баранины",
+    "product_price": 400,
+    "product_images": "kebab/images/shashlyk_baranina.jpg",
+    "categories": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 3,
+  "fields": {
+    "product_name": "Крылышки",
+    "product_price": 200,
+    "product_images": "kebab/images/krilishki.jpg",
+    "categories": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 4,
+  "fields": {
+    "product_name": "Люля-кебаб свинина",
+    "product_price": 300,
+    "product_images": "kebab/images/lulya_kebab_svinina_.jpg",
+    "categories": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 5,
+  "fields": {
+    "product_name": "Люля-кебаб баранина",
+    "product_price": 400,
+    "product_images": "kebab/images/Lyulya_kebab_baranina.jpg",
+    "categories": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 6,
+  "fields": {
+    "product_name": "Баклажаны",
+    "product_price": 200,
+    "product_images": "kebab/images/baklani.jpg",
+    "categories": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 7,
+  "fields": {
+    "product_name": "Кабачки",
+    "product_price": 250,
+    "product_images": "kebab/images/kabachki.jpg",
+    "categories": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 8,
+  "fields": {
+    "product_name": "Шаурма курица",
+    "product_price": 250,
+    "product_images": "kebab/images/kebabx.jpg",
+    "categories": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 9,
+  "fields": {
+    "product_name": "Шаурма MIX",
+    "product_price": 280,
+    "product_images": "kebab/images/shaurma_mix.jpg",
+    "categories": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 10,
+  "fields": {
+    "product_name": "Лаваш",
+    "product_price": 70,
+    "product_images": "kebab/images/lavash.jpg",
+    "categories": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 11,
+  "fields": {
+    "product_name": "Лаваш-лепешка",
+    "product_price": 80,
+    "product_images": "kebab/images/bulka.jpg",
+    "categories": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 12,
+  "fields": {
+    "product_name": "Соус красный",
+    "product_price": 50,
+    "product_images": "kebab/images/red_sauce.jpg",
+    "categories": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 13,
+  "fields": {
+    "product_name": "Соус белый",
+    "product_price": 50,
+    "product_images": "kebab/images/white_sauce.jpg",
+    "categories": 6,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 14,
+  "fields": {
+    "product_name": "Кола",
+    "product_price": 100,
+    "product_images": "kebab/images/kola.jpeg",
+    "categories": 7,
+    "is_active": true
+  }
+},
+{
+  "model": "kebab.products",
+  "pk": 15,
+  "fields": {
+    "product_name": "Шаурма баранина",
+    "product_price": 300,
+    "product_images": "kebab/images/shaurma_baranina.jpg",
+    "categories": 4,
+    "is_active": true
+  }
+}
+]

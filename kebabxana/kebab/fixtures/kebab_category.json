@@ -1,0 +1,58 @@
+[
+{
+  "model": "kebab.category",
+  "pk": 1,
+  "fields": {
+    "name": "Шашлык",
+    "slug": "shashlik"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 2,
+  "fields": {
+    "name": "Люля-кебаб",
+    "slug": "lulya-kebab"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 3,
+  "fields": {
+    "name": "Овощи гриль",
+    "slug": "ovochi-grill"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 4,
+  "fields": {
+    "name": "Шаурма",
+    "slug": "kebab"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 5,
+  "fields": {
+    "name": "Хлеб",
+    "slug": "hleb"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 6,
+  "fields": {
+    "name": "Соусы",
+    "slug": "sauces"
+  }
+},
+{
+  "model": "kebab.category",
+  "pk": 7,
+  "fields": {
+    "name": "Напитки",
+    "slug": "drink"
+  }
+}
+]
