@@ -1,25 +1,17 @@
 {% extends "base.html" %}
 {% load kebab_tags %}
+{% load cart_tags %}
+
+{% block modal_cart %}
+{% include 'cart/includes/cart.html' %}
+{% endblock  %}
 
 {% block content %}
 <section>
     <div class="container-fluid mt-4">
         <div class="row">
-            <div class="col-lg-2 col-md-12">
-                <div class="row">
-                    <div class="sideBar drop">
-                        <div class="col-lg-12 side-bar my-2 mx-4">
-                            <h2 class="side-bar-menu">Меню</h3>
-                        </div>
-                        {% for cat in cats %}
-                        <div class="col-lg-12 side-bar my-2 mx-4">
-                            <a class="side-bar-text" href="#{{ cat.slug }}">{{ cat.name }}</a>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8 col-md-12">
+            {% include 'kebab/includes/sidebar.html' %}
+            <div class="col-lg-7 col-md-12">
                 <div class="row">
                     {% for cat in cats %}
                     <div class="category my-2">
@@ -34,7 +26,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ pr.product_name }}</h5>
                                 <p class="card-price">{{ pr.product_price }} <small>₽</small></p>
-                                <button class="add-cart">Добавить</button>
+                                <button class="add-cart"
+                                data-product-id="{{ pr.id }}"
+                                data-cart-add-url="{% url "cart:cart_add" %}">
+                                    {% csrf_token %}
+                                    Добавить</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -42,7 +39,7 @@
                     {% endfor %}
                     {% endfor %}
                 </div>
-            </div>
+            {% include "cart/includes/cart_content.html" %}
         </div>
     </div>            
 </section>

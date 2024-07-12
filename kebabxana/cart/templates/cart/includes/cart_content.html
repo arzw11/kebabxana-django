@@ -1,0 +1,50 @@
+{% load cart_tags %}
+<div class="col-lg-3 col-md-12" id="cart-items">
+    <div class="cartTab">
+        <h1>Корзина</h1>
+        <div class="listCart">
+            {% user_carts request as carts%}
+            {% for cart in carts %}
+            <div class="item">
+                <div class="image">
+                    <img src="{{cart.product.product_images.url}}" alt="...">
+                </div>
+                <div class="name">
+                    {{ cart.product.product_name}}
+                </div>
+                <div class="total-price">
+                    {{cart.product_price}}
+                </div>
+                <div class="quantity">
+                    {% if cart.quantity == 1 %}
+                    <span class="minus remove-cart" data-cart-id="{{ cart.id }}"
+                    data-cart-id="{{ cart.id }}"
+                    data-cart-remove-url="{% url "cart:cart_remove"  %}">
+                    {% csrf_token %}
+                    <</span>
+                    {% else %}
+                    <span class="minus"
+                    data-cart-id="{{ cart.id }}"
+                    data-cart-change-url="{% url "cart:cart_change"  %}">
+                    {% csrf_token %}
+                    <</span>
+                    {% endif %}
+                    <span class="count"> {{cart.quantity}} </span>
+                    <span class="plus" 
+                    data-cart-id="{{ cart.id }}"
+                    data-cart-change-url="{% url "cart:cart_change" %}">
+                    {% csrf_token %}
+                    ></span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="btn">
+            {% if carts %}
+            <button class="close">CLOSE</button>
+            <button class="checkOut"><a href="#">checkOut</a></button>
+            {% else %}
+            <button class="close">CLOSE</button>
+            {% endif %}
+        </div>
+    </div>

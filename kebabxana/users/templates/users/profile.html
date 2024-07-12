@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block modal_cart %}
+{% include 'cart/includes/cart.html' %}
+{% endblock  %}
+
 {% block content %}
 <h1>Профиль</h1>
 
@@ -27,4 +31,5 @@
     {% csrf_token %}
      <button type="submit" class="btn btn-success">выйти</button>
  </form>
+{% include "cart/includes/cart_content.html" %}
 {% endblock %}

@@ -22,3 +22,5 @@ class EmailAuthBackend(BaseBackend):
         
         except(user_model.DoesNotExist):
             return None
+
+        

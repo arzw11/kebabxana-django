@@ -17,6 +17,8 @@ class ProductsAdmin(admin.ModelAdmin):
     search_fields = ['product_name__startswith']
     list_filter = ['categories__name', 'is_active']
     
+    prepopulated_fields = {'slug': ('product_name',)}
+
     actions = ['set_active', 'set_inactive']
 
     @admin.display(description='Изображение')

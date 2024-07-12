@@ -1,10 +1,12 @@
 from django.db import models
 
 class ActivityManager(models.Manager):
+
     def get_queryset(self):
         return super().get_queryset().filter(is_active=Products.Status.ACTIVE)
 
 class Category(models.Model):
+
     name = models.CharField(max_length=100, db_index=True, verbose_name='Название категории')
     slug = models.SlugField(max_length=255, unique=True, db_index=True)
 
@@ -16,11 +18,13 @@ class Category(models.Model):
         verbose_name_plural = 'Категории'
 
 class Products(models.Model):
+
     class Status(models.IntegerChoices):
         INACTIVE = 0, 'Склад'
         ACTIVE = 1, 'Продажа'
 
     product_name = models.CharField(max_length=100, verbose_name='Название')
+    slug = models.SlugField(max_length=200, unique=True, verbose_name='URL')
     product_price = models.IntegerField(null=False, default=0, verbose_name='Цена')
     product_images = models.ImageField(upload_to='kebab/images/',null=True, verbose_name='Иллюстрация')
     categories = models.ForeignKey('Category', on_delete=models.PROTECT, verbose_name='Категория')

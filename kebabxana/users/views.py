@@ -1,9 +1,12 @@
+from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView
+from django.contrib import auth
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.urls import reverse_lazy
 
 from .forms import LoginUserForm, RegisterUserForm, ProfileUserForm, UserPasswordChangeForm
+from cart.models import Cart
 
 class LoginUser(LoginView):
     form_class = LoginUserForm
@@ -16,6 +19,21 @@ class LoginUser(LoginView):
             self.request.session.set_expiry(0)  
             self.request.session.modified = True
         return super(LoginUser, self).form_valid(form)
+    
+    def form_valid(self, form):
+        session_key = self.request.session.session_key
+        user = form.get_user()
+
+        if user:
+            auth.login(self.request, user)
+            if session_key:
+                forgot_carts = Cart.objects.filter(user=user)
+                if forgot_carts.exists():
+                    forgot_carts.delete()
+
+                Cart.objects.filter(session_key=session_key).update(user=user)
+
+                return HttpResponseRedirect(self.get_success_url())
 
 
 class RegisterUser(CreateView):

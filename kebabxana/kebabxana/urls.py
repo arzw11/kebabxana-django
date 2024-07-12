@@ -24,6 +24,8 @@ urlpatterns = [
     path('',include('kebab.urls')),
     path('users/', include('users.urls', namespace='users')),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    
 ]
 
 if settings.DEBUG:
