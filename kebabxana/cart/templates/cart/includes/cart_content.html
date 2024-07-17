@@ -39,12 +39,10 @@
             </div>
             {% endfor %}
         </div>
-        <div class="btn">
-            {% if carts %}
-            <button class="close">CLOSE</button>
-            <button class="checkOut"><a href="#">checkOut</a></button>
-            {% else %}
-            <button class="close">CLOSE</button>
-            {% endif %}
+        <div class="total-price">
+            <h5>Итого:</h5>
+            <div class="total">{{carts.total_price}} <small>₽</small></div>
         </div>
+        <button class="checkOut"><a href="{% url "orders:create_order" %}">Оформить заказ</a></button>
     </div>
+<div>

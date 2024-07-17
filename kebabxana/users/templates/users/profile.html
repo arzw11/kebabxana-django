@@ -1,35 +1,68 @@
 {% extends "base.html" %}
-
 {% block modal_cart %}
 {% include 'cart/includes/cart.html' %}
-{% endblock  %}
+{% endblock %}
 
 {% block content %}
-<h1>Профиль</h1>
-
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="form-error">{{ form.non_field_errors }}</div>
-    {% for f in form %}
-    <p><label class="form-label" for="{{ f.id_for_label }}">{{f.label}}: </label>{{ f }}</p>
-    <div class="form-error">{{ f.errors }}</div>
-    {% endfor %}
-
-    <p><button type="submit">Сохранить</button></p>
-</form>
-
-<hr>
-{% if not perms.users.social_auth %}
-<form action="{% url 'users:password_change' %}" method="post">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success">Сменить пароль</button>
-</form>
-{% endif %}
-
-<form action="{% url 'users:logout' %}" method="post">
-    {% csrf_token %}
-     <button type="submit" class="btn btn-success">выйти</button>
- </form>
+<div class="profile"> 
+    <div class="wrapperProfile">
+        <div class=" bg-white p-4 mb-4 mx-2 rounded custom-shadow">
+            <h3 class="text-center mb-4">Мои заказы</h3>
+            <div class="container">
+                <div class="accordion" id="accordionExample">
+                    {% for order in orders %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ order.id }}">
+                            <button class="accordion-button {% if order != orders.0 %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.id }}" aria-expanded="false" aria-controls="collapse{{ order.id }}">
+                                Заказ № {{ order.id }} - {{ order.created_timestamp }} | Статус: <strong class="mx-2">{{order.status}}</strong>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ order.id }}" class="accordion-collapse collapse {% if order == orders.0 %}show{% endif %}" aria-labelledby="heading{{ order.id }}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-dark table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Товар</th>
+                                            <th>Количество</th>
+                                            <th>Цена</th>
+                                            <th>Общая стоимость</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in order.order_items.all %}
+                                        <tr>
+                                            <td><a class="text-white" href="#">{{ item.product.product_name }}</a></td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.price }}</td>
+                                            <td>{{ item.product_price }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="profileBTN">
+            <div>
+                {% if not perms.users.social_auth %}
+                <form action="{% url 'users:password_change' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="butn">Сменить пароль</button>
+                </form>
+                {% endif %}
+            </div>
+            <div>
+                <form action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                     <button type="submit" class="butn">Выйти</button>
+                 </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% include "cart/includes/cart_content.html" %}
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load cart_tags %}
+{% block content %}
+<div class="order">
+    <div class="wrapperOrder">
+        <h1>Заказ</h1>
+        {% include "cart/includes/cart_content_without_btns.html" %}
+        {% include "orders/includes/create_form.html" %}
+    </div>
+</div>
+{% endblock  %}

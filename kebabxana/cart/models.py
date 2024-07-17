@@ -5,15 +5,13 @@ from kebab.models import Products
 
 
 class CartQueryset(models.QuerySet):
-
     def total_price(self):
-        return sum(cart.product_price for cart in self)
+        return sum(cart.product_price() for cart in self)
     
     def total_quantity(self):
         return sum(cart.quantity for cart in self)
 
 class Cart(models.Model):
-
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, verbose_name='Пользователь')
     product = models.ForeignKey(Products, on_delete=models.CASCADE, verbose_name='Товар')
     quantity = models.PositiveSmallIntegerField(default=0, verbose_name='Количество')

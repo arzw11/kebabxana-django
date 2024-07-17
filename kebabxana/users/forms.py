@@ -53,22 +53,16 @@ class PasswordResetFormUserConfirm(SetPasswordForm):
 
 
 class ProfileUserForm(forms.ModelForm):
-    username = forms.CharField(disabled=True,label='Логин', widget=forms.TextInput(attrs={'class': 'text-input'}))
-    email = forms.CharField(disabled=True, required= False, label='E-mail', widget=forms.TextInput(attrs={'class': 'text-input'}))
-    phone_number = PhoneNumberField(widget=forms.TextInput(attrs={'class': 'text-input'}), label='Номер телефона')
+    username = forms.CharField(disabled=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    phone_number = PhoneNumberField(widget=forms.TextInput(attrs={'placeholder': 'Номер телефона'}))
     this_year = datetime.date.today().year
-    date_birth = forms.DateField(widget=forms.SelectDateWidget(years=tuple(range(this_year-100, this_year-5))))
+    date_birth = forms.DateField(widget=forms.SelectDateWidget(years=tuple(range(this_year-100, this_year-5))), label='Дата рождения')
     
     class Meta:
         model = get_user_model()
-        fields = ['username','phone_number', 'email', 'date_birth', 'first_name', 'last_name']
-        labels = {
-            'first_name': 'Имя',
-            'last_name': 'Фамилия',
-        }
+        fields = ['username','phone_number', 'date_birth', 'first_name',]
         widgets = {
-            'first_name': forms.TextInput(attrs={'class': 'form-input'}),
-            'last_name': forms.TextInput(attrs={'class': 'form-input'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Имя'}),
         }
 
 class UserPasswordChangeForm(PasswordChangeForm):

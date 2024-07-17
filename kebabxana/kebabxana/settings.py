@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'kebab.apps.KebabConfig',
     'users.apps.UsersConfig',
     'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
     'phonenumber_field',
     'social_django',
 ]

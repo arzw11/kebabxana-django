@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.views.generic import CreateView, UpdateView
 from django.contrib import auth
@@ -7,10 +8,13 @@ from django.urls import reverse_lazy
 
 from .forms import LoginUserForm, RegisterUserForm, ProfileUserForm, UserPasswordChangeForm
 from cart.models import Cart
+from kebab.utils import DataMixin
+from orders.models import Order, OrderDetail
 
-class LoginUser(LoginView):
+class LoginUser(LoginView, DataMixin):
     form_class = LoginUserForm
     template_name = 'users/login.html'
+    title_page = 'Авторизация'
 
     def form_valid(self, form):
        
@@ -36,20 +40,30 @@ class LoginUser(LoginView):
                 return HttpResponseRedirect(self.get_success_url())
 
 
-class RegisterUser(CreateView):
+class RegisterUser(CreateView, DataMixin):
     form_class = RegisterUserForm
     template_name = 'users/register.html'
     success_url = reverse_lazy('users:login')
+    title_page = 'Регистрация'
+    
+    
 
-class ProfileUser(LoginRequiredMixin, UpdateView):
+class ProfileUser(LoginRequiredMixin, UpdateView, DataMixin):
     form_class = ProfileUserForm
     template_name = 'users/profile.html'
+    title_page = 'Профиль'
 
     def get_success_url(self):
         return reverse_lazy('users:profile')
 
     def get_object(self, queryset=None):
         return self.request.user
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['orders'] = Order.objects.filter(user=self.request.user).prefetch_related(Prefetch(lookup='order_items',queryset=OrderDetail.objects.select_related('product'))).order_by('-id')
+        return self.get_mixin_context(context=context)
+    
 
 class UserPasswordChange(PasswordChangeView):
     form_class = UserPasswordChangeForm

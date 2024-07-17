@@ -1,0 +1,24 @@
+{% load cart_tags %}
+<div class="listCart">
+    {% user_carts request as carts%}
+    {% for cart in carts %}
+    <div class="item">
+        <div class="image">
+            <img src="{{cart.product.product_images.url}}" alt="...">
+        </div>
+        <div class="name">
+            {{ cart.product.product_name}}
+        </div>
+        <div class="total-price">
+            {{cart.product_price}}
+        </div>
+        <div class="quantity">
+            <span class="count"> {{cart.quantity}} </span>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="total-price">
+        <h5>Итого:</h5>
+        <div class="total">{{carts.total_price}} <small>₽</small></div>
+    </div>
+</div>
